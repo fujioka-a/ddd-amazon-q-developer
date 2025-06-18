@@ -14,14 +14,14 @@ Parameters:
 Globals:
   Function:
     Timeout: 30
-    Runtime: python3.9
+    Runtime: python3.13
     MemorySize: 256
     Environment:
       Variables:
         TASK_TABLE_NAME: !Ref TaskTable
         COGNITO_USER_POOL_ID: !Ref UserPool
         COGNITO_CLIENT_ID: !Ref UserPoolClient
-        AWS_REGION: !Ref AWS::Region
+        REGION_NAME: !Ref AWS::Region
 
 Resources:
   # DynamoDB Table

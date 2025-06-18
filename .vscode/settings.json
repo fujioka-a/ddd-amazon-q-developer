@@ -1,0 +1,7 @@
+{
+    "python.testing.pytestArgs": [
+        "task-management-app"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
+}

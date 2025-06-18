@@ -13,7 +13,7 @@ class CognitoAuthService:
     """Cognitoを使用した認証サービス"""
 
     def __init__(self):
-        self._region = os.environ.get('AWS_REGION', 'us-east-1')
+        self._region = os.environ.get('REGION_NAME', 'us-east-1')
         self._user_pool_id = os.environ.get('COGNITO_USER_POOL_ID')
         self._client_id = os.environ.get('COGNITO_CLIENT_ID')
         self._cognito_idp = boto3.client('cognito-idp')

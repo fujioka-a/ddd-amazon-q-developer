@@ -7,7 +7,6 @@ import TaskForm from '../components/TaskForm';
 
 const { Content } = Layout;
 const { Title } = Typography;
-const { TabPane } = Tabs;
 
 const TaskPage = () => {
   const [tasks, setTasks] = useState([]);
@@ -42,7 +41,7 @@ const TaskPage = () => {
     setLoading(true);
     try {
       const apiName = 'TaskAPI';
-      
+
       if (editingTask) {
         // 既存タスクの更新
         const path = `/tasks/${editingTask.task_id}`;
@@ -54,7 +53,7 @@ const TaskPage = () => {
         await API.post(apiName, path, { body: values });
         message.success('タスクを作成しました');
       }
-      
+
       // モーダルを閉じてタスク一覧を再取得
       setModalVisible(false);
       setEditingTask(null);
@@ -116,6 +115,13 @@ const TaskPage = () => {
     }
   };
 
+  const items = [
+    { key: 'all', label: 'すべて' },
+    { key: 'not-started', label: '未着手' },
+    { key: 'in-progress', label: '進行中' },
+    { key: 'completed', label: '完了' },
+  ];
+
   return (
     <Layout style={{ minHeight: '100vh', padding: '24px' }}>
       <Content style={{ background: '#fff', padding: '24px', borderRadius: '4px' }}>
@@ -130,12 +136,7 @@ const TaskPage = () => {
           </Button>
         </div>
 
-        <Tabs activeKey={activeTab} onChange={setActiveTab}>
-          <TabPane tab="すべて" key="all" />
-          <TabPane tab="未着手" key="not-started" />
-          <TabPane tab="進行中" key="in-progress" />
-          <TabPane tab="完了" key="completed" />
-        </Tabs>
+        <Tabs activeKey={activeTab} onChange={setActiveTab} items={items} />
 
         <TaskList
           tasks={getFilteredTasks()}

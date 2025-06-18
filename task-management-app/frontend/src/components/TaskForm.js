@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Form, Input, DatePicker, Select, message } from 'antd';
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 const { TextArea } = Input;
 const { Option } = Select;
 
 const TaskForm = ({ task, onSubmit, loading }) => {
   const [form] = Form.useForm();
-  
+
   useEffect(() => {
     if (task) {
       // タスクが提供された場合、フォームにデータを設定
@@ -15,7 +15,7 @@ const TaskForm = ({ task, onSubmit, loading }) => {
         title: task.title,
         description: task.description,
         status: task.status,
-        due_date: task.due_date ? moment(task.due_date) : null,
+        due_date: task.due_date ? dayjs(task.due_date) : null,
       });
     } else {
       // 新規作成の場合はフォームをリセット
@@ -28,7 +28,7 @@ const TaskForm = ({ task, onSubmit, loading }) => {
       ...values,
       due_date: values.due_date ? values.due_date.format('YYYY-MM-DD') : null,
     };
-    
+
     onSubmit(formattedValues);
   };
 

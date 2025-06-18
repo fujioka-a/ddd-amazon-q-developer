@@ -195,3 +195,9 @@ cython_debug/
 
 .DS_Store
 __init__.py
+
+.aws-sam/
+
+node_modules/
+
+AmazonQ.md

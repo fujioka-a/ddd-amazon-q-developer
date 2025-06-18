@@ -119,33 +119,64 @@
 - `delete_task(task_id, user_id)`: タスクを削除
 - `update_task_status(task_id, user_id, status)`: タスクのステータスを更新
 
+## 開発環境のセットアップ
+
+### 前提条件
+
+- Python 3.13
+- uv (Python パッケージマネージャー)
+- AWS SAM CLI
+
+### インストール
+
+1. 依存関係をインストールします：
+
+```bash
+# 基本的な依存関係のインストール
+make install
+
+# または開発用の依存関係も含めてインストール
+make install-dev
+```
+
+### コード品質管理
+
+```bash
+# コードフォーマット
+make format
+
+# リントチェック
+make lint
+
+# テスト実行
+make test
+```
+
+### ローカル実行
+
+```bash
+# SAMを使用してローカルでAPIを実行
+make sam-local
+```
+
+### デプロイ
+
+```bash
+# AWSにデプロイ
+make sam-deploy
+```
+
 ## 依存関係
 
-- Python 3.9以上
+- Python 3.13
 - boto3: AWS SDKライブラリ
 - PyJWT: JWTトークン処理ライブラリ
 - cryptography: 暗号化ライブラリ
+- uvicorn: ASGIサーバー（ローカル開発用）
 
-## テスト
+### 開発用ツール
 
-バックエンドコードには、各層に対応する単体テストが含まれています：
-
-- `tests/domain/`: ドメイン層のテスト
-- `tests/application/`: アプリケーション層のテスト
-- `tests/infrastructure/`: インフラストラクチャ層のテスト
-- `tests/interfaces/`: インターフェース層のテスト
-
-テストを実行するには：
-
-```bash
-pytest
-```
-
-## デプロイ
-
-バックエンドは、AWS SAMを使用してデプロイします：
-
-```bash
-sam build
-sam deploy --guided
-```
+- pytest: テストフレームワーク
+- ruff: リンターとフォーマッター
+- mypy: 静的型チェッカー
+- moto: AWSサービスのモック

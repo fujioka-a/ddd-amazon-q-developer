@@ -1,7 +1,7 @@
 import React from 'react';
 import { List, Card, Tag, Button, Popconfirm, Typography, Space } from 'antd';
 import { EditOutlined, DeleteOutlined, CheckOutlined, ClockCircleOutlined } from '@ant-design/icons';
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 const { Title, Text } = Typography;
 
@@ -63,13 +63,13 @@ const TaskList = ({ tasks, onEdit, onDelete, loading }) => {
               <Text type="secondary" ellipsis={{ rows: 3 }}>
                 {task.description || '説明なし'}
               </Text>
-              
+
               {task.due_date && (
                 <div style={{ marginTop: '16px' }}>
                   <Space>
                     <ClockCircleOutlined />
-                    <Text type={moment(task.due_date).isBefore(moment(), 'day') && task.status !== '完了' ? 'danger' : 'secondary'}>
-                      期限: {moment(task.due_date).format('YYYY/MM/DD')}
+                    <Text type={dayjs(task.due_date).isBefore(dayjs(), 'day') && task.status !== '完了' ? 'danger' : 'secondary'}>
+                      期限: {dayjs(task.due_date).format('YYYY/MM/DD')}
                     </Text>
                   </Space>
                 </div>
